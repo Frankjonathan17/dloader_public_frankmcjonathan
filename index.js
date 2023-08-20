@@ -81,6 +81,11 @@ app.get('/pakua', (req, res) => {
 });
 
 
+app.get('/', (req, res) => {
+  return res.send('Ipo online dloader server')
+});
+
+
 app.get('/proxy', (req, res) => {
   const imageUrl = req.query.url;
   axios
