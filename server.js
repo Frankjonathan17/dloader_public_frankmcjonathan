@@ -14,9 +14,7 @@ const moment = require('moment');
 const cron = require('node-cron')
 const getImages  = require('./routes/get/image')
 const io = require('socket.io')(http,{
-  cors:{
-    origin:['http://localhost:3000','http://localhost:3001','http://localhost:3002','https://dloader.netlify.app']
-  }
+ 
 })
 
 
@@ -24,7 +22,6 @@ const io = require('socket.io')(http,{
 const getVideoInfos = require('./routes/get/infos')
 const downnloadAnyAudio = require('./routes/download/AnyFree')
 app.use(express.urlencoded({extended: true}));app.use(cors());app.use(express.json());
-
 
 
 // A middleware to add the socket id to the request object

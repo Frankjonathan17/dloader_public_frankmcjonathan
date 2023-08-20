@@ -2,7 +2,7 @@
   "name": "express-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "openshift": "nodeshift --dockerImage=registry.access.redhat.com/ubi8/nodejs-18",
     "start": "node server.js",
