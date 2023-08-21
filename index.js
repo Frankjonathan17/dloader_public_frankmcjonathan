@@ -14,8 +14,11 @@ const moment = require('moment');
 const cron = require('node-cron')
 const getImages  = require('./routes/get/image')
 const io = require('socket.io')(http,{
- 
+  cors:{
+    origin:['http://localhost:3000','http://localhost:3001','http://localhost:3002','https://dloader.netlify.app']
+  }
 })
+
 
 
 // imports
