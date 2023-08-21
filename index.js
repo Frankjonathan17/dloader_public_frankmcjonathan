@@ -14,11 +14,11 @@ const moment = require('moment');
 const cron = require('node-cron')
 const getImages  = require('./routes/get/image')
 
-const io = require('socket.io')(http,{
-  cors:{
-    origin:['http://localhost:3000','http://localhost:3001','http://localhost:3002','loader.netlify.app','https://dloader.netlify.app']
+const io = require('socket.io')(app, {
+  cors: {
+    origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'loader.netlify.app', 'https://dloader.netlify.app']
   }
-})
+});
 
 
 // imports
@@ -33,13 +33,13 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({extended: true}));app.use(cors());app.use(express.json());
 // // Add middleware to set CORS headers
-// app.use((req, res, next) => {
-//   // Set the 'Access-Control-Allow-Origin' header to '*'
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   // Set other necessary headers such as 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers', etc.
-//   // ...
-//   next();
-// });
+app.use((req, res, next) => {
+  // Set the 'Access-Control-Allow-Origin' header to '*'
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Set other necessary headers such as 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers', etc.
+  // ...
+  next();
+});
 
 
 io.on('connection',socket=>{
@@ -192,6 +192,6 @@ cron.schedule('*/1 * * * *', () => {
 });
 
 const port = process.env.PORT || 4500
-http.listen(port,()=>{
+app.listen(port,()=>{
     console.log('server listen in port ',port);
 })
