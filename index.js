@@ -32,14 +32,14 @@ app.use((req, res, next) => {
 });
 
 app.use(express.urlencoded({extended: true}));app.use(cors());app.use(express.json());
-// Add middleware to set CORS headers
-app.use((req, res, next) => {
-  // Set the 'Access-Control-Allow-Origin' header to '*'
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Set other necessary headers such as 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers', etc.
-  // ...
-  next();
-});
+// // Add middleware to set CORS headers
+// app.use((req, res, next) => {
+//   // Set the 'Access-Control-Allow-Origin' header to '*'
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   // Set other necessary headers such as 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers', etc.
+//   // ...
+//   next();
+// });
 
 
 io.on('connection',socket=>{
