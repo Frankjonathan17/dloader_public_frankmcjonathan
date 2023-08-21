@@ -23,7 +23,6 @@ const getVideoInfos = require('./routes/get/infos')
 const downnloadAnyAudio = require('./routes/download/AnyFree')
 app.use(express.urlencoded({extended: true}));app.use(cors());app.use(express.json());
 
-
 // A middleware to add the socket id to the request object
 app.use((req, res, next) => {
   req.socketId = io.sockets.sockets.keys().next().value; // Get the last connected socket id
@@ -47,7 +46,6 @@ io.on('connection',socket=>{
 });
 app.use('/api/get/images',getImages)
 app.use('/download/video', require('./routes/download/video')(io));
-app.get('/',async(req,res)=>{return res.send('server is online listenig')})
 app.use('/download/any/audio', downnloadAnyAudio)
 app.use('/infos',getVideoInfos)
 app.use('/download/audios',audioDownload)
