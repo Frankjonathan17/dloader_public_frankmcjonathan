@@ -13,15 +13,6 @@ const glob = require('glob');
 const moment = require('moment');
 const cron = require('node-cron')
 const getImages  = require('./routes/get/image')
-app.use(express.urlencoded({extended: true}));app.use(cors());app.use(express.json());
-// Add middleware to set CORS headers
-app.use((req, res, next) => {
-  // Set the 'Access-Control-Allow-Origin' header to '*'
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Set other necessary headers such as 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers', etc.
-  // ...
-  next();
-});
 
 const io = require('socket.io')(http,{
   cors:{
@@ -37,6 +28,16 @@ const downnloadAnyAudio = require('./routes/download/AnyFree')
 // A middleware to add the socket id to the request object
 app.use((req, res, next) => {
   req.socketId = io.sockets.sockets.keys().next().value; // Get the last connected socket id
+  next();
+});
+
+app.use(express.urlencoded({extended: true}));app.use(cors());app.use(express.json());
+// Add middleware to set CORS headers
+app.use((req, res, next) => {
+  // Set the 'Access-Control-Allow-Origin' header to '*'
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Set other necessary headers such as 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers', etc.
+  // ...
   next();
 });
 
